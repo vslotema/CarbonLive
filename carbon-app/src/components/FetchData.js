@@ -14,9 +14,8 @@ class FetchData extends Component {
   state = {
     query: "",
     regionID: "",
-    access: [],
     lat: null,
-    lng: null,
+    lon: null,
   };
 
   componentDidMount() {
@@ -24,10 +23,10 @@ class FetchData extends Component {
       (position) => {
         this.setState({
           lat: position.coords.latitude,
-          lng: position.coords.longitude,
+          lon: position.coords.longitude,
         });
         console.log("latitude ", this.state.lat);
-        console.log("longitude ", this.state.lng);
+        console.log("longitude ", this.state.lon);
       },
       (err) => console.log(err)
     );
@@ -40,16 +39,15 @@ class FetchData extends Component {
           "auth-token": `${TOKEN}`,
         },
       })
-      .then((res) => this.setIDandAccess(res))
-      .then(() => this.getData())
+      .then((res) => this.setID(res))
+      .then(() => this.getData("?zone=" + this.state.regionID))
       .catch((error) => {
         console.error(error);
       });
   };
 
-  setIDandAccess = (res) => {
+  setID = (res) => {
     const region = this.getRightFormat();
-    let found = false;
 
     console.log("!!!!! WE HAVE A CONNECTION !!!!!");
     const ID = Object.keys(res.data).filter(
@@ -58,24 +56,9 @@ class FetchData extends Component {
 
     if (ID) {
       this.setState({ regionID: ID[0] });
-      // this.setState({ access: res.data[ID[0]].access });
     } else {
       this.setState({ regionID: null });
-      // this.setState({ access: null });
     }
-  };
-
-  getData = () => {
-    //if (this.state.access) {
-    //if (this.checkIfAccess(CARBON))
-    this.getCarbonIntensityData(URL + CARBON + "?zone=" + this.state.regionID);
-
-    // if (this.checkIfAccess(PCB))
-    this.getPCBData(URL + PCB + "?zone=" + this.state.regionID);
-    //} else {
-    // this.onSendCarbonData(null);
-    // this.onSendPCBData(null);
-    //}
   };
 
   getRightFormat = () => {
@@ -88,6 +71,11 @@ class FetchData extends Component {
           : reg[i].charAt(0).toUpperCase() + reg[i].slice(1).toLowerCase();
     }
     return right;
+  };
+
+  getData = (query) => {
+    this.getCarbonIntensityData(URL + CARBON + query);
+    this.getPCBData(URL + PCB + query);
   };
 
   getCarbonIntensityData = (url) => {
@@ -153,6 +141,11 @@ class FetchData extends Component {
     this.props.receivePCB(pcb);
   };
 
+  handleLocation = () => {
+    console.log("in handle location");
+    this.getData("?lat=" + this.state.lat + "lon=" + this.state.lon);
+  };
+
   render() {
     return (
       <nav
@@ -160,11 +153,11 @@ class FetchData extends Component {
         role="navigation"
       >
         <SearchBar
-          onChange={this.handleChange}
+          onChange={this.handleChange.bind}
           onKeyPress={this.handleKeypress}
           onSubmit={this.handleSubmit}
         />
-        <Geolocation />
+        <Geolocation onLocation={this.handleLocation} />
       </nav>
     );
   }
