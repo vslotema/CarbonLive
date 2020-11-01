@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import SearchBar from "./SearchBar";
+import { render } from "react-dom";
+import Geolocation from "./Geolocation";
 
 const TOKEN = "rILfhiFrZ3emXcVMGU62";
 const URL = "https://api.electricitymap.org/v3/";
@@ -13,7 +15,23 @@ class FetchData extends Component {
     query: "",
     regionID: "",
     access: [],
+    lat: null,
+    lng: null,
   };
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        });
+        console.log("latitude ", this.state.lat);
+        console.log("longitude ", this.state.lng);
+      },
+      (err) => console.log(err)
+    );
+  }
 
   retrieveDataFromAPI = () => {
     axios
@@ -22,44 +40,43 @@ class FetchData extends Component {
           "auth-token": `${TOKEN}`,
         },
       })
-      .then((res) => this.setIDandAcces(res))
+      .then((res) => this.setIDandAccess(res))
       .then(() => this.getData())
       .catch((error) => {
         console.error(error);
       });
   };
 
-  setIDandAcces = (res) => {
+  setIDandAccess = (res) => {
     const region = this.getRightFormat();
     let found = false;
 
     console.log("!!!!! WE HAVE A CONNECTION !!!!!");
-    const ID = Object.keys(res.data).filter((i) => {
-      if (
-        res.data[i].countryName === region &&
-        !res.data[i].zoneName &&
-        !found
-      ) {
-        found = true;
-        return i;
-      } else if (res.data[i].zoneName === region && !found) {
-        found = true;
-        return i;
-      }
-    });
+    const ID = Object.keys(res.data).filter(
+      (i) => res.data[i].zoneName === region
+    );
 
-    this.setState({ regionID: ID[0] });
-    this.setState({ access: res.data[ID[0]].access });
-    console.log("retrieved ID ", this.state.regionID);
+    if (ID) {
+      this.setState({ regionID: ID[0] });
+      // this.setState({ access: res.data[ID[0]].access });
+    } else {
+      this.setState({ regionID: null });
+      // this.setState({ access: null });
+    }
   };
 
   getData = () => {
-    if (this.checkIfAccess(CARBON))
-      this.getCarbonIntensityData(URL + CARBON + "?zone=");
+    //if (this.state.access) {
+    //if (this.checkIfAccess(CARBON))
+    this.getCarbonIntensityData(URL + CARBON + "?zone=" + this.state.regionID);
 
-    if (this.checkIfAccess(PCB)) this.getPCBData(URL + PCB + "?zone=");
+    // if (this.checkIfAccess(PCB))
+    this.getPCBData(URL + PCB + "?zone=" + this.state.regionID);
+    //} else {
+    // this.onSendCarbonData(null);
+    // this.onSendPCBData(null);
+    //}
   };
-
 
   getRightFormat = () => {
     let reg = this.state.query.split(" ");
@@ -75,42 +92,38 @@ class FetchData extends Component {
 
   getCarbonIntensityData = (url) => {
     axios
-      .get(url + this.state.regionID, {
+      .get(url, {
         headers: {
           "auth-token": `${TOKEN}`,
         },
       })
       .then((res) => {
-        console.log("!!!!! WE HAVE A CONNECTION !!!!!");
         this.onSendCarbonData(res.data);
       })
       .catch((error) => {
+        this.onSendCarbonData(null);
         console.error(error);
       });
   };
 
   getPCBData = (url) => {
     axios
-      .get(url + this.state.regionID, {
+      .get(url, {
         headers: {
           "auth-token": `${TOKEN}`,
         },
       })
       .then((res) => {
-        console.log("!!!!! WE HAVE A CONNECTION !!!!!");
         this.onSendPCBData(res.data);
       })
       .catch((error) => {
+        this.onSendPCBData(null);
         console.error(error);
       });
   };
 
   checkIfAccess = (info) => {
-    console.log("info ", info);
-    let access = false;
-    if (this.state.access.some((i) => i === info || i === "*")) access = true;
-    console.log("access? ", access);
-    return access;
+    return this.state.access.some((i) => i === info || i === "*");
   };
 
   handleChange = (e) => {
@@ -119,6 +132,13 @@ class FetchData extends Component {
       query: e.target.value,
     });
     console.log("search ", this.state.query);
+  };
+
+  handleKeypress = (e) => {
+    if (e.charCode === 13) {
+      this.handleSubmit();
+      e.preventDefault();
+    }
   };
 
   handleSubmit = () => {
@@ -135,9 +155,17 @@ class FetchData extends Component {
 
   render() {
     return (
-      <div>
-        <SearchBar onChange={this.handleChange} onSubmit={this.handleSubmit} />
-      </div>
+      <nav
+        className="navbar navbar-expand-md navbar-light sticky-top"
+        role="navigation"
+      >
+        <SearchBar
+          onChange={this.handleChange}
+          onKeyPress={this.handleKeypress}
+          onSubmit={this.handleSubmit}
+        />
+        <Geolocation />
+      </nav>
     );
   }
 }

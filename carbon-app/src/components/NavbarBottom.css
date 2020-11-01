@@ -1,0 +1,16 @@
+.bottom-tab-nav {
+  border-top: solid 1px rgba(255, 255, 255, 0.5);
+}
+.nav-link,
+.bottom-nav-link {
+  color: #7c86af;
+  text-decoration: none;
+}
+
+.bottom-nav-link.active {
+  opacity: 100;
+  color: #ffffff;
+}
+.bottom-tab-label {
+  font-size: 14px;
+}

@@ -1,16 +1,28 @@
-import React, { Component, Route, About } from "react";
-import Country from "../FetchData";
+import React from "react";
+import Circle from "./Circle";
+import Legend from "./Legend";
+import { ColorList } from "./Colors";
 
-class CarbonLive extends Component {
-  state = {};
-  render() {
-    return (
-      <div>
-        <h1>HELLO</h1>
-        <Country />
-      </div>
-    );
-  }
+function CarbonLive(props) {
+  const style = {
+    color: "white",
+    fontFamily: "NATS",
+    fontSize: "1.2em",
+    textAlign: "center",
+    display: "block",
+    marginTop: "23px",
+  };
+
+  return (
+    <div>
+      <Circle
+        stroke-width="6"
+        intensity={props.isAuthed.carbonIntensity}
+      ></Circle>
+      <h7 style={style}>Carbon intensity (gCO₂eq/kWh)</h7>
+      <Legend />
+    </div>
+  );
 }
 
 export default CarbonLive;

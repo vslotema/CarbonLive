@@ -1,36 +1,29 @@
 import React, { Component } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
+import "./SearchBar.css";
 
 class SearchBar extends Component {
-  toggleMessage = (c) => {
-    c.preventDefault();
-    //this.setState({ country: !this.state.country });
-    this.setState({ country: this.state.query });
-    console.log(this.state.country);
-  };
-
   render() {
-    console.log("props ", this.props);
     return (
-      <nav>
-        <form className="form-inline my-2 my-lg-0">
-          <input
-            className="form-control mr-sm-2"
-            type="search"
-            placeholder="Search Country"
-            aria-label="Search"
-            onChange={(e) => this.props.onChange(e)}
-          />
+      <form className="form-inline custom-form">
+        <input
+          className="form-control mr-sm-2"
+          type="search"
+          placeholder="Find your region"
+          aria-label="Search"
+          onChange={(e) => this.props.onChange(e)}
+          onKeyPress={(e) => this.props.onKeyPress(e)}
+        />
 
-          <button
-            type="button"
-            onClick={() => this.props.onSubmit()}
-            className="btn btn-light sm"
-          >
-            <AiOutlineSearch color="black" size="1.3rem"></AiOutlineSearch>
-          </button>
-        </form>
-      </nav>
+        <button
+          type="button"
+          onClick={() => this.props.onSubmit()}
+          className="btn custom-button"
+          padding="0.0rem"
+        >
+          <AiOutlineSearch color="white" size="1.2rem "></AiOutlineSearch>
+        </button>
+      </form>
     );
   }
 }

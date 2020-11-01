@@ -1,0 +1,10 @@
+.legend rect,
+.legend {
+  width: 100vw;
+}
+
+circle {
+  transition: all 2.5s;
+}
+
+

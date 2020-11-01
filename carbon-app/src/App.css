@@ -1,6 +1,10 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+body {
+  color: white;
+  height: 100vh;
+  background: linear-gradient(
+    0deg,
+    rgba(149, 153, 226, 1) 0%,
+    rgba(139, 198, 236, 1) 100%
+  );
   font-family: "Montserrat", sans-serif;
 }
