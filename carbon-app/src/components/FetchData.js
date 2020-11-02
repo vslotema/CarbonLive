@@ -25,8 +25,6 @@ class FetchData extends Component {
           lat: position.coords.latitude,
           lon: position.coords.longitude,
         });
-        console.log("latitude ", this.state.lat);
-        console.log("longitude ", this.state.lon);
       },
       (err) => console.log(err)
     );
@@ -54,7 +52,7 @@ class FetchData extends Component {
       (i) => res.data[i].zoneName === region
     );
 
-    if (ID) {
+    if (ID.length > 0) {
       this.setState({ regionID: ID[0] });
     } else {
       this.setState({ regionID: null });
@@ -119,7 +117,6 @@ class FetchData extends Component {
     this.setState({
       query: e.target.value,
     });
-    console.log("search ", this.state.query);
   };
 
   handleKeypress = (e) => {
@@ -142,7 +139,6 @@ class FetchData extends Component {
   };
 
   handleLocation = () => {
-    console.log("in handle location");
     this.getData("?lat=" + this.state.lat + "lon=" + this.state.lon);
   };
 
@@ -153,7 +149,7 @@ class FetchData extends Component {
         role="navigation"
       >
         <SearchBar
-          onChange={this.handleChange.bind}
+          onChange={this.handleChange}
           onKeyPress={this.handleKeypress}
           onSubmit={this.handleSubmit}
         />

@@ -1,10 +1,24 @@
-body {
-  color: white;
+/* body {
   height: 100vh;
   background: linear-gradient(
     0deg,
     rgba(149, 153, 226, 1) 0%,
     rgba(139, 198, 236, 1) 100%
   );
-  font-family: "Montserrat", sans-serif;
+  background-size: cover;
+  background-blend-mode: multiply;
+  background-repeat: no-repeat;
+} */
+
+body {
+  height: 100vh;
+  background: linear-gradient(
+      0deg,
+      rgba(149, 153, 226, 1) 0%,
+      rgba(139, 198, 236, 1) 100%
+    ),
+    url(./denmarkHigh.svg);
+  background-size: cover;
+  background-blend-mode: multiply;
+  background-repeat: no-repeat;
 }

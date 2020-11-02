@@ -11,10 +11,8 @@ class App extends Component {
   state = {
     carbonIntensity: [],
     breakdown: [],
-  
+    zone: "",
   };
-
- 
 
   handleCarbonData = (carbonIntensity) => {
     if (!carbonIntensity) {
@@ -35,8 +33,6 @@ class App extends Component {
   };
 
   render() {
-    console.log("Current data carbon ", this.state.carbonIntensity);
-    console.log("Current breakdown ", this.state.breakdown);
     return (
       <React.Fragment>
         <FetchData
@@ -50,7 +46,11 @@ class App extends Component {
               exact
               path="/"
               render={(props) => (
-                <CarbonLive {...props} isAuthed={this.state.carbonIntensity} />
+                <CarbonLive
+                  
+                  {...props}
+                  isAuthed={this.state.carbonIntensity}
+                />
               )}
             ></Route>
 

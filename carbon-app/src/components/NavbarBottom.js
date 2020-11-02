@@ -22,7 +22,6 @@ class Navigation extends Component {
   render() {
     return (
       <div>
-        {/* Bottom Tab Navigator*/}
         <nav
           className="navbar fixed-bottom navbar-light bottom-tab-nav"
           role="navigation"

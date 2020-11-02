@@ -1,0 +1,7 @@
+.carbon {
+  background-color: linear-gradient(
+    0deg,
+    rgba(149, 153, 226, 1) 0%,
+    rgba(139, 198, 236, 1) 100%
+  );
+}

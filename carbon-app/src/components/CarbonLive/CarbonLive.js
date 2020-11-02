@@ -1,7 +1,7 @@
 import React from "react";
 import Circle from "./Circle";
 import Legend from "./Legend";
-import { ColorList } from "./Colors";
+import "./CarbonLive.css";
 
 function CarbonLive(props) {
   const style = {

@@ -1,0 +1,11 @@
+.chart {
+  transition: 0.3s;
+}
+
+text {
+  fill: white !important;
+}
+
+text.noData {
+  fill: #7c86af !important;
+}

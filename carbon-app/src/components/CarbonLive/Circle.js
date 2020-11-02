@@ -2,14 +2,13 @@ import { ColorList } from "./Colors";
 import "./Legend.css";
 
 function Circle(props) {
-  console.log("Circle ", props.intensity);
   const strokecolor = () =>
     ColorList.filter(
       (c) => c.min <= props.intensity && c.max > props.intensity
     );
 
   const text1 = !props.intensity ? "" : props.intensity + "g";
-  const text2 = !props.intensity ? "" : "consumed";
+  const text2 = !props.intensity ? "" : "carbon intensity";
   const text3 = !props.intensity ? "No data available" : "";
   const stroke = !props.intensity ? "#7C86AF" : strokecolor()[0].color;
 
@@ -37,7 +36,7 @@ function Circle(props) {
           style={props}
           stroke={stroke}
           cx="50%"
-          cy="110"
+          cy="43%"
           r="70"
           id="circle"
           fill="url('#myGradient')"
@@ -47,29 +46,30 @@ function Circle(props) {
         <text
           fill="white"
           x="50%"
-          y="44%"
+          y="43%"
           dominant
           aseline="middle"
           textAnchor="middle"
           fontSize="1.8em"
           fontFamily="NATS"
-          filter="url(#drop-shadow)"
+          // filter="url(#drop-shadow)"
         >
           {text1}
         </text>
         <text
           fill="white"
           x="50%"
-          y="50%"
+          y="48%"
           dominantBaseline="middle"
           textAnchor="middle"
-          fontSize="0.8em"
+          fontSize="0.75em"
           fontFamily="NATS"
         >
           {text2}
         </text>
         <text
           fill="#7C86AF"
+          className="noData"
           x="50%"
           y="43%"
           dominantBaseline="middle"
