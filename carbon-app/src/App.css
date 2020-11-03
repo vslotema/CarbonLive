@@ -1,4 +1,4 @@
-body {
+/* body {
   height: 100vh;
   background: linear-gradient(
     0deg,
@@ -8,9 +8,9 @@ body {
   background-size: cover;
   background-blend-mode: multiply;
   background-repeat: no-repeat;
-}
+} */
 
-/* body {
+body {
   height: 100vh;
   background: linear-gradient(
       0deg,
@@ -21,4 +21,4 @@ body {
   background-size: cover;
   background-blend-mode: multiply;
   background-repeat: no-repeat;
-} */
+}
