@@ -26,3 +26,5 @@ Moreover, a simple bottom navigation bar was implented to easily switch between 
 ### Architecture
 
 The SearchBar component triggers a search event to the FetchData component. In here, Fetchdata receives the region and first looks for its corresponding ID through the API. Then retrieves the carbon intensity as well as the power consumption breakdown (PCB) data and sends it to the App component. Then App sends the carbon intensity data to the CarbonLive component and the PCB data to the PowerBreakdown component.
+
+<img src="pics/arch.png" alt="" style="height: 300px; width:500px;"/>
