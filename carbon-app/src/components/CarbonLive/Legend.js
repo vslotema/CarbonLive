@@ -25,19 +25,54 @@ function Legend() {
         width="100vw"
         filter="url('#shadow-drop')"
       />
-      <text fill="white" x="4%" y="25%" fontSize="1.1em" fontFamily="NATS">
+      <text
+        className="info"
+        fill="white"
+        x="4%"
+        y="25%"
+        fontSize="1.1em"
+        fontFamily="NATS"
+      >
         0
       </text>
-      <text fill="white" x="22.0%" y="25%" fontSize="1.1em" fontFamily="NATS">
+      <text
+        className="info"
+        fill="white"
+        x="22.0%"
+        y="25%"
+        fontSize="1.1em"
+        fontFamily="NATS"
+      >
         200
       </text>
-      <text fill="white" x="45.0%" y="25%" fontSize="1.1em" fontFamily="NATS">
+      <text
+        className="info"
+        fill="white"
+        x="45.0%"
+        y="25%"
+        fontSize="1.1em"
+        fontFamily="NATS"
+      >
         400
       </text>
-      <text fill="white" x="69.5%" y="25%" fontSize="1.1em" fontFamily="NATS">
+      <text
+        className="info"
+        fill="white"
+        x="69.5%"
+        y="25%"
+        fontSize="1.1em"
+        fontFamily="NATS"
+      >
         600
       </text>
-      <text fill="white" x="92%" y="25%" fontSize="1.1em" fontFamily="NATS">
+      <text
+        className="info"
+        fill="white"
+        x="92%"
+        y="25%"
+        fontSize="1.1em"
+        fontFamily="NATS"
+      >
         800
       </text>
     </svg>

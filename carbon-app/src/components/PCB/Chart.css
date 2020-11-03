@@ -1,9 +1,13 @@
 .chart {
-  transition: 0.3s;
+  transition: 1s;
 }
 
-text {
+text.info {
   fill: white !important;
+}
+
+div[text-anchor] {
+  fill: #59638a !important;
 }
 
 text.noData {

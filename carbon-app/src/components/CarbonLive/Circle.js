@@ -44,6 +44,7 @@ function Circle(props) {
         />
 
         <text
+        className="info"
           fill="white"
           x="50%"
           y="43%"
@@ -57,6 +58,7 @@ function Circle(props) {
           {text1}
         </text>
         <text
+        className="info"
           fill="white"
           x="50%"
           y="48%"

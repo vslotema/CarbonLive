@@ -1,9 +1,9 @@
 export const ColorList = [
-  { min: 0, max: 50, color: "#2AD400" },
+  { min: 0, max: 75, color: "#2AD400" },
 
-  { min: 50, max: 100, color: "#70E21F" },
+  { min: 75, max: 150, color: "#70E21F" },
 
-  { min: 100, max: 200, color: "#F3FB5A" },
+  { min: 150, max: 200, color: "#F3FB5A" },
 
   { min: 200, max: 300, color: "#f9d057" },
 

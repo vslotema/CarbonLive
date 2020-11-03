@@ -1,8 +1,9 @@
 function Donut(props) {
-  const c1 = (props.fossilfree * (3.1416 * 132)) / 100;
+  const p = props.fossilfree ? props.fossilfree : props.renewable;
+  const c1 = (p * (3.1416 * 132)) / 100;
   const c2 = 3.1416 * 100;
-  const text1 = props.fossilfree + " %";
-  const text2 = "Fossil free!";
+  const text1 = p + " %";
+  const text2 = props.fossilfree ? "Fossil free!" : "Renewable!";
 
   return (
     <svg

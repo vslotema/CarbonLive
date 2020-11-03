@@ -6,11 +6,12 @@ const theme = {
   fontSize: 16,
   fontFamily: "NATS",
   position: "relative",
+  fill: "#7C86AF",
 };
 
 export const Chart = ({ data /* see data tab */ }) => {
   return (
-    <div style={{ height: 350 }}>
+    <div style={{ height: 350 }} >
       <ResponsivePie
         theme={theme}
         data={data}
