@@ -3,13 +3,7 @@
 Carbon Live is a web application that enables people to know the amount of carbon emissions emitted from electricity of their own region. It keeps live track of the carbon intensity as well breaks down the power consumption into the energy sources in percentile groups and what percentage of the consumed energy sources are considered to be fossil free.
 
 
-
-<img src="pics/cl.png" alt="" style="height: 400px; width:200px;"/>
-<img src="pics/nodat.png" alt="" style="height: 400px; width:200px;"/>
-<img src="pics/noback.png" alt="" style="height: 400px; width:200px;"/>
-
-
-
+![](pics/com.png)
 
 ### Design Considerations
 When starting the design of the app there were two major things to consider. One, the app is aimed for a non-technical audience. So the information that is being displayed needs to trigger some kind of understanding without having to be an expert about the subject. The app should be intuitive and easy to use. Second, since I did not have prior experience with React or other front-end development tools I needed to create a design that would not be too overcomplicated but still built it in such a way that it would be easy enough to add new features.
